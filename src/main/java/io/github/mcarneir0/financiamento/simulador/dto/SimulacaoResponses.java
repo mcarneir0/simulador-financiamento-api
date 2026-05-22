@@ -13,4 +13,14 @@ public class SimulacaoResponses {
             BigDecimal valorTotalJuros,
             List<ParcelaResponse> parcelas
     ) { }
+
+    public record BuscarSimulacaoResponse(
+            Long id,
+            BigDecimal valorInicial,
+            double taxaJurosMensal,
+            Integer prazoMeses,
+            BigDecimal valorTotalFinal,
+            BigDecimal valorTotalJuros,
+            List<ParcelaResponse> parcelas
+    ) { }
 }

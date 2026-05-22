@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class SimulacaoService {
@@ -54,5 +55,9 @@ public class SimulacaoService {
 
         simulacao.persist();
         return simulacao;
+    }
+
+    public Optional<Simulacao> buscarSimulacaoPeloId(Long id) {
+        return Simulacao.findByIdOptional(id);
     }
 }

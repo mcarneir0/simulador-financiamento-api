@@ -2,15 +2,14 @@ package io.github.mcarneir0.financiamento.simulador.resource;
 
 import io.github.mcarneir0.financiamento.simulador.dto.ParcelaResponses;
 import io.github.mcarneir0.financiamento.simulador.dto.SimulacaoRequests.CriarSimulacaoRequest;
+import io.github.mcarneir0.financiamento.simulador.dto.SimulacaoResponses;
 import io.github.mcarneir0.financiamento.simulador.dto.SimulacaoResponses.CriarSimulacaoResponse;
 import io.github.mcarneir0.financiamento.simulador.entity.Simulacao;
 import io.github.mcarneir0.financiamento.simulador.service.SimulacaoService;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.validation.constraints.Min;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -48,5 +47,26 @@ public class SimulacaoResource {
                         )).toList()
                 ))
                 .build();
+    }
+
+    @GET
+    @Path("/{id}")
+    public Response buscarSimulacaoPeloId(@PathParam("id") @Min(1) Long id) {
+        return simulacaoService.buscarSimulacaoPeloId(id)
+                .map(simulacao -> Response.ok(new SimulacaoResponses.BuscarSimulacaoResponse(
+                        simulacao.id,
+                        simulacao.getValorInicial().setScale(2, RoundingMode.HALF_UP),
+                        simulacao.getTaxaJurosMensal() * 100,
+                        simulacao.getPrazoMeses(),
+                        simulacao.getValorTotalFinal().setScale(2, RoundingMode.HALF_UP),
+                        simulacao.getValorTotalJuros().setScale(2, RoundingMode.HALF_UP),
+                        simulacao.getParcelas().stream().map(parcela -> new ParcelaResponses.ParcelaResponse(
+                                parcela.getMes(),
+                                parcela.getSaldoInicial().setScale(2, RoundingMode.HALF_UP),
+                                parcela.getValorJuros().setScale(2, RoundingMode.HALF_UP),
+                                parcela.getSaldoFinal().setScale(2, RoundingMode.HALF_UP)
+                        )).toList()
+                )).build())
+                .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 }
