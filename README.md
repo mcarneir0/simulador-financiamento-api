@@ -1,78 +1,75 @@
-# simulador-financiamento-api
+# Simulador de Financiamento API
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Bem-vindo ao **Simulador de Financiamento API**! Esta aplicação foi desenvolvida utilizando o framework **Quarkus** e fornece endpoints REST para calcular simulações de financiamentos usando juros compostos. Além do cálculo de totais, a API constrói o fluxo de pagamento detalhado (mês a mês) para que os usuários possam visualizar a evolução do saldo devedor e os juros aplicados em cada parcela.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+A API foi construída seguindo boas práticas de desenvolvimento, com validações (`Hibernate Validator`), persistência em banco em memória (`H2` + `Panache`), ampla cobertura de testes unitários e de integração (`JUnit` + `RestAssured`), métricas de cobertura de código (`JaCoCo`) e documentação padronizada gerada automaticamente (`OpenAPI/Swagger`).
 
-## Running the application in dev mode
+---
 
-You can run your application in dev mode that enables live coding using:
+## 🚀 Como começar
 
-```shell script
+O projeto utiliza o **Maven Wrapper** (`mvnw`), portanto, você não precisa ter o Maven instalado na sua máquina para executá-lo. Basta garantir que você tenha o Java (versão 25 ou superior) configurado.
+
+Para Windows, utilize o comando `.\mvnw.cmd`. Para sistemas Linux/Mac, utilize `./mvnw`.
+
+### 1. Compilar o projeto
+
+Para compilar a aplicação e baixar todas as dependências, execute:
+
+```bash
+./mvnw clean compile
+```
+
+### 2. Executar em modo de desenvolvimento (Quarkus Dev Mode)
+
+O Quarkus possui um excelente modo de desenvolvimento que permite *Live Reload* (alterações no código são refletidas em tempo real sem a necessidade de reiniciar o servidor). Para rodar a aplicação:
+
+```bash
 ./mvnw quarkus:dev
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+A aplicação iniciará na porta `8080` por padrão. Para interromper o servidor, pressione `CTRL+C` no terminal.
 
-## Packaging and running the application
+### 3. Acessar a Documentação da API (Swagger UI)
 
-The application can be packaged using:
+Com a aplicação rodando (através do comando `quarkus:dev` ou do pacote final), você pode visualizar e interagir com todos os endpoints de forma visual usando o **Swagger UI**.
 
-```shell script
-./mvnw package
+Acesse no seu navegador:
+👉 **[http://localhost:8080/q/swagger-ui](http://localhost:8080/q/swagger-ui)**
+
+Lá você encontrará os schemas de Requests e Responses bem como a possibilidade de enviar requisições de teste diretamente pela página.
+
+---
+
+## 🧪 Testes e Cobertura (JaCoCo)
+
+O projeto possui rigorosa cobertura contemplando cenários de borda (banco de dados vazio, entradas nulas) e fluxos de integração HTTP.
+
+### Executar a suíte de testes
+
+Para rodar todos os testes unitários e de integração, garantindo que o comportamento da aplicação está correto, execute o *goal* de verificação:
+
+```bash
+./mvnw verify
 ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+*(Nota: a fase de `verify` cuida tanto do Surefire quanto do Failsafe, rodando e empacotando os testes da forma ideal para o Quarkus).*
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+### Relatório de Cobertura de Código
 
-If you want to build an _über-jar_, execute the following command:
+Sempre que a suíte de testes é executada, o **JaCoCo** compila um relatório em HTML avaliando linha a linha a cobertura do seu código. 
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+Para verificar o relatório após rodar o `verify`, basta abrir o seguinte arquivo no seu navegador preferido:
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+📁 **`target/jacoco-report/index.html`**
 
-## Creating a native executable
+---
 
-You can create a native executable using:
+## 🛠️ Tecnologias Principais
 
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/simulador-financiamento-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Related Guides
-
-- REST ([guide](https://quarkus.io/guides/rest)): Build RESTful web services and APIs using Jakarta REST (formerly JAX-RS)
-- REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
-- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplified JPA/Hibernate data access layer with active record and repository patterns
-
-## Provided Code
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-
-[Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
-
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+- **[Quarkus](https://quarkus.io/)** - Framework Java Cloud Native
+- **Hibernate ORM com Panache** - Simplificação da camada de acesso a dados
+- **H2 Database** - Banco de dados em memória para agilidade no dev/testes
+- **JUnit 5 & RestAssured** - Frameworks para testes unitários e de integração E2E
+- **JaCoCo** - Ferramenta de Coverage para os testes
+- **SmallRye OpenAPI** - Geração de documentação Swagger automática
