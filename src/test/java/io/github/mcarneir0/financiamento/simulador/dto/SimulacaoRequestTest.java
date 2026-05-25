@@ -15,9 +15,9 @@ public class SimulacaoRequestTest {
                 1.2,
                 12
         );
-        assert criarSimulacaoRequest.valorInicial() != null;
-        assert criarSimulacaoRequest.taxaJurosMensal() > 0;
-        assert criarSimulacaoRequest.prazoMeses() != null;
+        assert criarSimulacaoRequest.valorInicial().equals(BigDecimal.valueOf(1000));
+        assert criarSimulacaoRequest.taxaJurosMensal() == 1.2;
+        assert criarSimulacaoRequest.prazoMeses() == 12;
     }
 
     @Test
