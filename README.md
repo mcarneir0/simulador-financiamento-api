@@ -50,7 +50,13 @@ O projeto possui rigorosa cobertura contemplando cenários de borda (banco de da
 Para rodar todos os testes unitários e de integração, garantindo que o comportamento da aplicação está correto, execute o *goal* de verificação:
 
 ```bash
-./mvnw verify
+./mvnw clean verify
+```
+
+Ou
+
+```bash
+./mvnw clean verify -Pnative
 ```
 
 *(Nota: a fase de `verify` cuida tanto do Surefire quanto do Failsafe, rodando e empacotando os testes da forma ideal para o Quarkus).*
