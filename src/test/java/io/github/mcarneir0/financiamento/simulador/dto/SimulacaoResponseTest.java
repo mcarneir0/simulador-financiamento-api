@@ -14,18 +14,18 @@ public class SimulacaoResponseTest {
     void testCriarSimulacaoResponse() {
         SimulacaoResponses.CriarSimulacaoResponse criarSimulacaoResponse = new SimulacaoResponses.CriarSimulacaoResponse(
                 1L,
-                BigDecimal.valueOf(1000),
                 BigDecimal.valueOf(2000),
+                BigDecimal.valueOf(1000),
                 List.of(new ParcelaResponses.ParcelaResponse(
                         LocalDate.now(),
                         BigDecimal.valueOf(1000),
                         BigDecimal.valueOf(50),
                         BigDecimal.valueOf(1050)
                 )));
-        assert criarSimulacaoResponse.id() != null;
-        assert criarSimulacaoResponse.valorTotalFinal() != null;
-        assert criarSimulacaoResponse.valorTotalJuros() != null;
-        assert criarSimulacaoResponse.parcelas() != null;
+        assert criarSimulacaoResponse.id().equals(1L);
+        assert criarSimulacaoResponse.valorTotalFinal().equals(BigDecimal.valueOf(2000));
+        assert criarSimulacaoResponse.valorTotalJuros().equals(BigDecimal.valueOf(1000));
+        assert criarSimulacaoResponse.parcelas().size() == 1;
     }
 
     @Test
@@ -35,21 +35,21 @@ public class SimulacaoResponseTest {
                 BigDecimal.valueOf(1000),
                 1.2,
                 12,
-                BigDecimal.valueOf(1000),
                 BigDecimal.valueOf(2000),
+                BigDecimal.valueOf(1000),
                 List.of(new ParcelaResponses.ParcelaResponse(
                         LocalDate.now(),
                         BigDecimal.valueOf(1000),
                         BigDecimal.valueOf(50),
                         BigDecimal.valueOf(1050)
                 )));
-        assert buscarSimulacaoResponse.id() != null;
-        assert buscarSimulacaoResponse.valorInicial() != null;
-        assert buscarSimulacaoResponse.taxaJurosMensal() > 0;
-        assert buscarSimulacaoResponse.prazoMeses() != null;
-        assert buscarSimulacaoResponse.valorTotalFinal() != null;
-        assert buscarSimulacaoResponse.valorTotalJuros() != null;
-        assert buscarSimulacaoResponse.parcelas() != null;
+        assert buscarSimulacaoResponse.id().equals(1L);
+        assert buscarSimulacaoResponse.valorInicial().equals(BigDecimal.valueOf(1000));
+        assert buscarSimulacaoResponse.taxaJurosMensal() == 1.2;
+        assert buscarSimulacaoResponse.prazoMeses() == 12;
+        assert buscarSimulacaoResponse.valorTotalFinal().equals(BigDecimal.valueOf(2000));
+        assert buscarSimulacaoResponse.valorTotalJuros().equals(BigDecimal.valueOf(1000));
+        assert buscarSimulacaoResponse.parcelas().size() == 1;
     }
 
     @Test
