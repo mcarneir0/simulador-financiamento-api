@@ -24,12 +24,13 @@ public class SimulacaoTest {
                 BigDecimal.valueOf(50),
                 BigDecimal.valueOf(150)
         )));
-        assert simulacao.getValorInicial() != null;
-        assert simulacao.getValorTotalFinal() != null;
-        assert simulacao.getValorTotalJuros() != null;
-        assert simulacao.getTaxaJurosMensal() > 0;
-        assert simulacao.getPrazoMeses() > 0;
-        assert simulacao.getParcelas() != null;
+
+        assert simulacao.getValorInicial().equals(BigDecimal.valueOf(1000));
+        assert simulacao.getValorTotalFinal().equals(BigDecimal.valueOf(1100));
+        assert simulacao.getValorTotalJuros().equals(BigDecimal.valueOf(100));
+        assert simulacao.getTaxaJurosMensal() == 0.01;
+        assert simulacao.getPrazoMeses() == 12;
+        assert simulacao.getParcelas() != null && simulacao.getParcelas().size() == 1;
     }
 
     @Test
@@ -47,11 +48,12 @@ public class SimulacaoTest {
                         BigDecimal.valueOf(150)
                 ))
         );
-        assert simulacao.getValorInicial() != null;
-        assert simulacao.getValorTotalFinal() != null;
-        assert simulacao.getValorTotalJuros() != null;
-        assert simulacao.getTaxaJurosMensal() > 0;
-        assert simulacao.getPrazoMeses() > 0;
-        assert simulacao.getParcelas() != null;
+
+        assert simulacao.getValorInicial().equals(BigDecimal.valueOf(1000));
+        assert simulacao.getValorTotalFinal().equals(BigDecimal.valueOf(1100));
+        assert simulacao.getValorTotalJuros().equals(BigDecimal.valueOf(100));
+        assert simulacao.getTaxaJurosMensal() == 0.01;
+        assert simulacao.getPrazoMeses() == 12;
+        assert simulacao.getParcelas() != null && simulacao.getParcelas().size() == 1;
     }
 }
