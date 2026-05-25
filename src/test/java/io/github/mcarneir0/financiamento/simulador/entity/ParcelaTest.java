@@ -16,10 +16,11 @@ public class ParcelaTest {
         parcela.setSaldoFinal(BigDecimal.valueOf(150));
         parcela.setSaldoInicial(BigDecimal.valueOf(100));
         parcela.setValorJuros(BigDecimal.valueOf(50));
-        assert parcela.getMes() != null;
-        assert parcela.getSaldoInicial() != null;
-        assert parcela.getValorJuros() != null;
-        assert parcela.getSaldoFinal() != null;
+
+        assert parcela.getMes().equals(LocalDate.now());
+        assert parcela.getSaldoInicial().equals(BigDecimal.valueOf(100));
+        assert parcela.getSaldoFinal().equals(BigDecimal.valueOf(150));
+        assert parcela.getValorJuros().equals(BigDecimal.valueOf(50));
     }
 
     @Test
@@ -30,9 +31,10 @@ public class ParcelaTest {
                 BigDecimal.valueOf(50),
                 BigDecimal.valueOf(150)
         );
-        assert parcela.getMes() != null;
-        assert parcela.getSaldoInicial() != null;
-        assert parcela.getValorJuros() != null;
-        assert parcela.getSaldoFinal() != null;
+
+        assert parcela.getMes().equals(LocalDate.now());
+        assert parcela.getSaldoInicial().equals(BigDecimal.valueOf(100));
+        assert parcela.getValorJuros().equals(BigDecimal.valueOf(50));
+        assert parcela.getSaldoFinal().equals(BigDecimal.valueOf(150));
     }
 }
