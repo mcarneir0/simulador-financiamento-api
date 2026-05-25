@@ -17,10 +17,10 @@ public class ParcelaResponseTest {
                 BigDecimal.valueOf(50),
                 BigDecimal.valueOf(1050)
         );
-        assert parcelaResponse.mes() != null;
-        assert parcelaResponse.saldoInicial() != null;
-        assert parcelaResponse.valorJuros() != null;
-        assert parcelaResponse.saldoFinal() != null;
+        assert parcelaResponse.mes().equals(LocalDate.now());
+        assert parcelaResponse.saldoInicial().equals(BigDecimal.valueOf(1000));
+        assert parcelaResponse.valorJuros().equals(BigDecimal.valueOf(50));
+        assert parcelaResponse.saldoFinal().equals(BigDecimal.valueOf(1050));
     }
 
     @Test
