@@ -37,7 +37,9 @@ public class SimulacaoResource {
     @APIResponses(value = {
         @APIResponse(responseCode = "201", description = "Simulação criada com sucesso", 
                      content = @Content(mediaType = "application/json", schema = @Schema(implementation = CriarSimulacaoResponse.class))),
-        @APIResponse(responseCode = "400", description = "Dados de entrada inválidos")
+        @APIResponse(responseCode = "400", description = "Dados de entrada inválidos"),
+        @APIResponse(responseCode = "500", description = "Erro interno ao processar a simulação"),
+        @APIResponse(responseCode = "503", description = "Serviço temporariamente indisponível")
     })
     public Response criarSimulacao(@Valid CriarSimulacaoRequest request) {
 
@@ -69,7 +71,9 @@ public class SimulacaoResource {
     @APIResponses(value = {
         @APIResponse(responseCode = "200", description = "Simulação encontrada",
                      content = @Content(mediaType = "application/json", schema = @Schema(implementation = SimulacaoResponses.BuscarSimulacaoResponse.class))),
-        @APIResponse(responseCode = "404", description = "Simulação não encontrada")
+        @APIResponse(responseCode = "404", description = "Simulação não encontrada"),
+        @APIResponse(responseCode = "500", description = "Erro interno ao buscar a simulação"),
+        @APIResponse(responseCode = "503", description = "Serviço temporariamente indisponível")
     })
     public Response buscarSimulacaoPeloId(
             @Parameter(description = "ID da simulação", required = true) 
