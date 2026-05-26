@@ -22,7 +22,7 @@ Para rodar todos os testes unitários e de integração, garantindo que o compor
 ./mvnw clean verify
 ```
 
-Ou
+Ou para compilar em código nativo:
 
 ```bash
 ./mvnw clean verify -Pnative
@@ -38,14 +38,20 @@ Sempre que a suíte de testes é executada, o **JaCoCo** compila um relatório e
 
 ### ✨ Executar a aplicação
 
-Após executar os testes é possível verificar os pacotes gerados pelo compilador do Maven. Eles ficam disponíveis na pasta abaixo:
+Após concluir os testes é possível verificar os pacotes gerados pelo compilador do Maven. Eles ficam disponíveis nos caminhos abaixo, de acordo com a opção do *verify*:
 
-📁 **`target/quarkus-app/quarkus-run.jar`**
+1. **Se compilou para JVM**
 
-Para iniciar o servidor, navegue até a pasta indicada e rode o comando:
+    📁 **`target/quarkus-app/quarkus-run.jar`**
+
+2. **Se compilou para nativo**
+
+    📁 **`target/simulador-financiamento-api-1.0.0-runner.exe`**
+
+Para iniciar o servidor dê um clique duplo no executável nativo ou rode o comando:
 
 ```bash
-java -jar ./quarkus-run.jar
+java -jar ./target/quarkus-app/quarkus-run.jar
 ```
 
 A aplicação iniciará na porta `8080` por padrão. Para interromper o servidor, pressione `CTRL+C` no terminal.
@@ -61,7 +67,7 @@ Lá você encontrará os schemas de Requests e Responses bem como a possibilidad
 
 ## 🛠️ Tecnologias Principais
 
-- **[Quarkus](https://quarkus.io/)** - Framework Java Cloud Native
+- **Quarkus** - Framework Java Cloud Native
 - **Hibernate ORM com Panache** - Simplificação da camada de acesso a dados
 - **H2 Database** - Banco de dados em memória para agilidade no dev/testes
 - **JUnit 5 & RestAssured** - Frameworks para testes unitários e de integração E2E
